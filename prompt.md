@@ -398,3 +398,19 @@ cover BOM/multiline content, invalid UTF-8, binary/unsupported files, oversized
 files, character limits and malformed chat. Browser verification covers successful
 local import, same-file reimport, unsupported-file feedback, Clear, and no upload.
 No additional model call is needed for import.
+
+### Beginner-friendly repository explanation
+
+**Actual instruction:**
+
+> Can you write a step by step explanation for the purpose and function of each file in the git repository? Write the explanations in such a way that a beginner only knowing conditional statements, loops, arrays, functions, in python can understand as well.
+
+**Tool:** Codex; exact coding-assistant model not recorded.
+**Purpose:** Explain the existing project without requiring prior web-development knowledge.
+**Affected:** `docs/FILE_GUIDE.md`, README link, and this development record.
+**Outcome:** Added a guide to all 49 tracked project files, including itself,
+ordered by the application data flow. It introduces browser/server roles, JSON,
+TypeScript, React state, API calls, and asynchronous work using Python comparisons.
+**Verification:** Checked coverage against Git's file list and checked links and
+Markdown formatting. Application code was unchanged; no model calls or additional
+application tests were needed for this documentation edit.

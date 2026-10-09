@@ -8,6 +8,9 @@ example loads input only; Analyze still calls the real model.
 See [prompt.md](prompt.md) for the AI-assisted development record, actual prompts,
 debugging, and verification.
 
+New to web development? Read the [beginner's file-by-file guide](docs/FILE_GUIDE.md)
+for the application flow and the purpose of every repository file.
+
 Built with Next.js, TypeScript, Zod, and real server-side Groq inference. No canned
 AI results, accounts, or conversation database. Preview messages locally; Analyze
 sends the conversation to Groq after the privacy notice.
