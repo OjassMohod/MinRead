@@ -14,10 +14,23 @@
           "m004"
         ],
         "ambiguity": null
+      },
+      {
+        "kind": "open_issue",
+        "description": "Who has the HDMI adapter for the demo?",
+        "owner": null,
+        "deadline_text": null,
+        "deadline_iso": null,
+        "status": "open",
+        "source_ids": [
+          "m006"
+        ],
+        "ambiguity": null
       }
     ],
     "summary_checks": [
-      "Asha agreed to upload final slides by 5 PM IST on 9 October."
+      "Asha agreed to upload final slides by 5 PM IST on 9 October.",
+      "HDMI adapter ownership remains unanswered."
     ],
     "forbidden_inferences": [
       "Do not mark the upload completed merely because Asha agreed."
@@ -27,7 +40,11 @@
     ],
     "high_priority_user_task_indexes": [
       0
-    ]
+    ],
+    "open_issue_indexes": [
+      1
+    ],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "dev-02",
@@ -69,7 +86,9 @@
     "outstanding_user_task_indexes": [
       0
     ],
-    "high_priority_user_task_indexes": []
+    "high_priority_user_task_indexes": [],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "dev-03",
@@ -87,16 +106,33 @@
           "m005"
         ],
         "ambiguity": null
+      },
+      {
+        "kind": "task",
+        "description": "Check mobile navigation",
+        "owner": "Neha",
+        "deadline_text": null,
+        "deadline_iso": null,
+        "status": "open",
+        "source_ids": [
+          "m006",
+          "m007"
+        ],
+        "ambiguity": null
       }
     ],
     "summary_checks": [
-      "Logo upload was completed and confirmed."
+      "Logo upload was completed and confirmed.",
+      "Neha takes ownership of the mobile navigation check, which remains outstanding."
     ],
     "forbidden_inferences": [
-      "Do not list the logo upload as an outstanding task."
+      "Do not list the logo upload as an outstanding task.",
+      "Do not leave mobile navigation as unassigned after Neha takes ownership."
     ],
     "outstanding_user_task_indexes": [],
-    "high_priority_user_task_indexes": []
+    "high_priority_user_task_indexes": [],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "dev-04",
@@ -123,7 +159,9 @@
       "Do not invent a replacement time."
     ],
     "outstanding_user_task_indexes": [],
-    "high_priority_user_task_indexes": []
+    "high_priority_user_task_indexes": [],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "dev-05",
@@ -136,13 +174,15 @@
       "A name mention is not an action item."
     ],
     "outstanding_user_task_indexes": [],
-    "high_priority_user_task_indexes": []
+    "high_priority_user_task_indexes": [],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "dev-06",
     "findings": [
       {
-        "kind": "task",
+        "kind": "open_issue",
         "description": "Check the demo button on phones",
         "owner": null,
         "deadline_text": null,
@@ -154,23 +194,71 @@
           "m004"
         ],
         "ambiguity": "Suggested check; no owner, firm commitment, or deadline."
+      },
+      {
+        "kind": "decision",
+        "description": "Use Node 24 for deployment",
+        "owner": null,
+        "deadline_text": null,
+        "deadline_iso": null,
+        "status": "resolved",
+        "source_ids": [
+          "m005",
+          "m006"
+        ],
+        "ambiguity": null
+      },
+      {
+        "kind": "open_issue",
+        "description": "Screen reader availability for accessibility testing is unanswered",
+        "owner": null,
+        "deadline_text": null,
+        "deadline_iso": null,
+        "status": "open",
+        "source_ids": [
+          "m007"
+        ],
+        "ambiguity": null
+      },
+      {
+        "kind": "open_issue",
+        "description": "Test phone cannot boot; no workaround exists",
+        "owner": null,
+        "deadline_text": null,
+        "deadline_iso": null,
+        "status": "open",
+        "source_ids": [
+          "m008"
+        ],
+        "ambiguity": null
       }
     ],
     "summary_checks": [
-      "Mobile button check is suggested but unassigned, with no deadline."
+      "Mobile button check is suggested but unassigned, with no deadline.",
+      "Node 24 is the confirmed deployment choice.",
+      "Screen reader availability and the test-phone blocker are unresolved."
     ],
     "forbidden_inferences": [
       "Do not assign this to Asha.",
-      "Do not turn the suggestion into a confirmed urgent obligation."
+      "Do not turn the suggestion into a confirmed urgent obligation.",
+      "Do not list Node version as unanswered; Node 24 was chosen."
     ],
     "outstanding_user_task_indexes": [],
-    "high_priority_user_task_indexes": []
+    "high_priority_user_task_indexes": [],
+    "open_issue_indexes": [
+      0,
+      2,
+      3
+    ],
+    "confirmed_decision_indexes": [
+      1
+    ]
   },
   {
     "case_id": "dev-07",
     "findings": [
       {
-        "kind": "decision",
+        "kind": "open_issue",
         "description": "Dashboard layout choice is disputed between A and B",
         "owner": null,
         "deadline_text": null,
@@ -192,7 +280,11 @@
       "Do not invent an owner or deadline for checking notes."
     ],
     "outstanding_user_task_indexes": [],
-    "high_priority_user_task_indexes": []
+    "high_priority_user_task_indexes": [],
+    "open_issue_indexes": [
+      0
+    ],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "dev-08",
@@ -222,7 +314,9 @@
     "outstanding_user_task_indexes": [
       0
     ],
-    "high_priority_user_task_indexes": []
+    "high_priority_user_task_indexes": [],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "eval-01",
@@ -266,7 +360,9 @@
     ],
     "high_priority_user_task_indexes": [
       1
-    ]
+    ],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "eval-02",
@@ -278,7 +374,9 @@
       "Do not manufacture action items to fill the interface."
     ],
     "outstanding_user_task_indexes": [],
-    "high_priority_user_task_indexes": []
+    "high_priority_user_task_indexes": [],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "eval-03",
@@ -310,7 +408,9 @@
     ],
     "high_priority_user_task_indexes": [
       0
-    ]
+    ],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": []
   },
   {
     "case_id": "eval-04",
@@ -368,6 +468,10 @@
     ],
     "high_priority_user_task_indexes": [
       0
+    ],
+    "open_issue_indexes": [],
+    "confirmed_decision_indexes": [
+      2
     ]
   }
 ]

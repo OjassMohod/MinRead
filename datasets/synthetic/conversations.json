@@ -36,9 +36,15 @@
         "sender": "Neha",
         "text": "Coffee first :)",
         "timestamp": "2026-10-09T09:04:00+05:30"
+      },
+      {
+        "id": "m006",
+        "sender": "Neha",
+        "text": "Who has the HDMI adapter we need for the demo?",
+        "timestamp": "2026-10-09T09:05:00+05:30"
       }
     ],
-    "raw_text": "[2026-10-09T09:00:00+05:30] Ravi: Morning! The demo room is confirmed.\n[2026-10-09T09:01:00+05:30] Asha: Nice, I can work on the presentation.\n[2026-10-09T09:02:00+05:30] Ravi: Asha, please upload the final slides by 5 PM on 9 October 2026. All times in this thread are IST.\n[2026-10-09T09:03:00+05:30] Asha: Yes, I will upload them.\n[2026-10-09T09:04:00+05:30] Neha: Coffee first :)"
+    "raw_text": "[2026-10-09T09:00:00+05:30] Ravi: Morning! The demo room is confirmed.\n[2026-10-09T09:01:00+05:30] Asha: Nice, I can work on the presentation.\n[2026-10-09T09:02:00+05:30] Ravi: Asha, please upload the final slides by 5 PM on 9 October 2026. All times in this thread are IST.\n[2026-10-09T09:03:00+05:30] Asha: Yes, I will upload them.\n[2026-10-09T09:04:00+05:30] Neha: Coffee first :)\n[2026-10-09T09:05:00+05:30] Neha: Who has the HDMI adapter we need for the demo?"
   },
   {
     "id": "dev-02",
@@ -118,9 +124,21 @@
         "sender": "Ravi",
         "text": "Checked it. Looks good, thanks!",
         "timestamp": "2026-10-09T09:04:00+05:30"
+      },
+      {
+        "id": "m006",
+        "sender": "Ravi",
+        "text": "Someone should check the mobile navigation.",
+        "timestamp": "2026-10-09T09:05:00+05:30"
+      },
+      {
+        "id": "m007",
+        "sender": "Neha",
+        "text": "I will take the mobile navigation check. It is assigned to me now.",
+        "timestamp": "2026-10-09T09:06:00+05:30"
       }
     ],
-    "raw_text": "[2026-10-09T09:00:00+05:30] Ravi: Asha, upload the logo SVG by 4 PM on 9 October 2026, IST.\n[2026-10-09T09:01:00+05:30] Asha: Working on it.\n[2026-10-09T09:02:00+05:30] Neha: The blue version looks good.\n[2026-10-09T09:03:00+05:30] Asha: Uploaded logo.svg to the shared folder. That task is done.\n[2026-10-09T09:04:00+05:30] Ravi: Checked it. Looks good, thanks!"
+    "raw_text": "[2026-10-09T09:00:00+05:30] Ravi: Asha, upload the logo SVG by 4 PM on 9 October 2026, IST.\n[2026-10-09T09:01:00+05:30] Asha: Working on it.\n[2026-10-09T09:02:00+05:30] Neha: The blue version looks good.\n[2026-10-09T09:03:00+05:30] Asha: Uploaded logo.svg to the shared folder. That task is done.\n[2026-10-09T09:04:00+05:30] Ravi: Checked it. Looks good, thanks!\n[2026-10-09T09:05:00+05:30] Ravi: Someone should check the mobile navigation.\n[2026-10-09T09:06:00+05:30] Neha: I will take the mobile navigation check. It is assigned to me now."
   },
   {
     "id": "dev-04",
@@ -229,9 +247,33 @@
         "sender": "Neha",
         "text": "No deadline decided either.",
         "timestamp": "2026-10-09T09:03:00+05:30"
+      },
+      {
+        "id": "m005",
+        "sender": "Ravi",
+        "text": "Which Node version are we deploying with?",
+        "timestamp": "2026-10-09T09:04:00+05:30"
+      },
+      {
+        "id": "m006",
+        "sender": "Neha",
+        "text": "Decision: use Node 24 for deployment.",
+        "timestamp": "2026-10-09T09:05:00+05:30"
+      },
+      {
+        "id": "m007",
+        "sender": "Asha",
+        "text": "Do we have a screen reader available for accessibility testing?",
+        "timestamp": "2026-10-09T09:06:00+05:30"
+      },
+      {
+        "id": "m008",
+        "sender": "Neha",
+        "text": "The test phone does not boot, and we still have no workaround.",
+        "timestamp": "2026-10-09T09:07:00+05:30"
       }
     ],
-    "raw_text": "[2026-10-09T09:00:00+05:30] Neha: Someone should check whether the demo button works on phones.\n[2026-10-09T09:01:00+05:30] Ravi: Good idea. We have not assigned that check yet.\n[2026-10-09T09:02:00+05:30] Asha: I am away from my laptop at the moment.\n[2026-10-09T09:03:00+05:30] Neha: No deadline decided either."
+    "raw_text": "[2026-10-09T09:00:00+05:30] Neha: Someone should check whether the demo button works on phones.\n[2026-10-09T09:01:00+05:30] Ravi: Good idea. We have not assigned that check yet.\n[2026-10-09T09:02:00+05:30] Asha: I am away from my laptop at the moment.\n[2026-10-09T09:03:00+05:30] Neha: No deadline decided either.\n[2026-10-09T09:04:00+05:30] Ravi: Which Node version are we deploying with?\n[2026-10-09T09:05:00+05:30] Neha: Decision: use Node 24 for deployment.\n[2026-10-09T09:06:00+05:30] Asha: Do we have a screen reader available for accessibility testing?\n[2026-10-09T09:07:00+05:30] Neha: The test phone does not boot, and we still have no workaround."
   },
   {
     "id": "dev-07",

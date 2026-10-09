@@ -1,10 +1,18 @@
 # minread — MVP scope and architecture
 
+## Updated constraint: API must be free
+
+Use Groq Free Plan and `openai/gpt-oss-120b`; see `PROVIDER_DECISION.md` for verified
+quotas and data controls. The adapter and disclosure now use configurable provider
+settings, defaulting to Groq. Put the Groq key in shared `CHAT_MODEL_API_KEY`, with
+its secure destination changed to `api.groq.com` in environment settings. Paid
+providers are disabled by default; never add paid fallbacks or automatic upgrades.
+
 ## Goal
 
 Help a returning chat participant understand what changed and what needs their
 attention. Deliver one working flow within a 150-minute hackathon budget:
-paste conversation → enter your name → analyze → inspect priorities and evidence.
+paste conversation → enter your name → analyze → inspect results and evidence.
 
 ## Locked MVP scope
 
@@ -12,9 +20,14 @@ paste conversation → enter your name → analyze → inspect priorities and ev
 - Enter a name or handle for relevance; do not infer the user's identity.
 - Show outstanding tasks, explicit deadlines, decisions, changes, and a brief recap.
 - Link every finding and summary bullet to supporting message IDs.
-- Explain priorities in text and highlight the cited messages.
+- Highlight cited messages. Priority levels are deferred to preserve deployment time.
 - Provide loading, empty, invalid-input, model-error, and clear-data states.
 - Make the main flow accessible by keyboard and usable on a phone.
+
+Results must appear in this order: Deadlines & Action Items, Conversation Summary,
+Important Decisions, Open Issues. Every displayed item opens its supporting
+messages. Open issues include important unanswered questions, unassigned work,
+unresolved blockers, and conflicting decisions; later resolution must be respected.
 
 No accounts, conversation database, messaging integrations, attachments, file
 imports, notifications, automatic replies, local inference, or unread-boundary
@@ -25,7 +38,7 @@ canned analysis results.
 
 - Next.js App Router and TypeScript: one application for browser UI and backend.
 - Zod: validate requests and model responses.
-- OpenAI API: real server-side inference; initial model `gpt-4.1-mini`, subject
+- Groq API: real server-side inference; default model `openai/gpt-oss-120b`, subject
   to a successful access and structured-output check. Keep the model configurable
   through server-only `CHAT_MODEL_NAME`. Never silently substitute sample output.
 - Vercel: intended public deployment target; account access and deployment are
@@ -34,16 +47,17 @@ canned analysis results.
   Never use a `NEXT_PUBLIC_` variable for credentials.
 
 Use separate modules for parsing, schemas, model extraction, response validation,
-priority rules, and interface components. The unused `hello.py` starter is removed.
+result grouping, and interface components. The unused `hello.py` starter is removed.
 
 ## Data flow and boundaries
 
 1. Hold pasted text in browser memory. Disclose cloud processing before Analyze.
 2. On Analyze, POST to the same-origin `/api/analyze` server endpoint.
-3. Validate input, assign stable message IDs, and send conversation data to OpenAI.
+3. Validate input, assign stable message IDs, and send conversation data to the
+   server-selected provider (Groq by default).
 4. Request structured extraction with owners, deadline text, supported normalized
    dates, status, ambiguity, and source IDs. Give the model no tools or actions.
-5. Validate the output and its source IDs, then rank findings using application rules.
+5. Validate the output and its source IDs, then place findings in the four requested sections.
 6. Return results with `Cache-Control: no-store`; render all content as escaped text.
 7. Clear resets input and results. It does not delete provider-retained data.
 
@@ -51,17 +65,14 @@ Treat instructions inside conversations as untrusted data. Prompt instructions
 reduce injection risk but do not guarantee correct extraction. Source validation
 checks that IDs exist; evaluation must also check that their text supports claims.
 
-## Limits and priority rules
+## Limits and result rules
 
 - Initial input maximum: 20,000 characters, enforced server-side along with a
   request-body byte limit. Reject oversize input; never silently truncate.
 - Initial output budget: 3,000 tokens; model timeout: 30 seconds. Detect incomplete
   output and fail visibly rather than displaying a partial result as complete.
-- Highest priority: unresolved assignments to the user with supported overdue
-  deadlines or deadlines within 24 hours. Use the user's timezone and a valid
-  timestamp to interpret relative dates; otherwise leave dates unresolved.
-- Next: other user assignments and relevant decisions or changes.
-- Lower: informational updates. A mention alone is not an assignment.
+- Show assigned outstanding tasks first, followed by summary, confirmed decisions,
+  and open issues. Do not add priority levels in this MVP.
 - Later corrections supersede earlier instructions only when supported by evidence.
 - Completed or cancelled items are not outstanding tasks; conflicts remain flagged.
 
@@ -92,39 +103,29 @@ checks that IDs exist; evaluation must also check that their text supports claim
 
 ## Current evidence and prerequisites
 
-- Initial repository inspection found only `hello.py`; it has since been removed.
-- Project name: `minread`; GitHub repository: `OjassMohod/MinRead`.
-  The local checkout remains `/workspace/Test1`; folder names do not define branding.
-  After the user renamed the repository, Git read access to the new URL was
-  verified and origin updated to `https://github.com/OjassMohod/MinRead.git`.
-  No repository reset, move, or clone is necessary for the name change.
-- Node.js 24.19.0 and npm 11.9.0 are installed. No application scaffold exists yet.
-- Checked credential presence only; no secret values were read or printed.
-- Neither `CHAT_MODEL_API_KEY` nor `OPENAI_API_KEY` is currently injected.
-- No Vercel deployment token is currently injected; an authenticated deployment
-  route or manual Vercel project setup will be needed during deployment.
-- Saved a cloud-environment draft requirement for `CHAT_MODEL_API_KEY`, scoped
-  to HTTPS destination `api.openai.com`; this domain was added to allowed access.
-- Draft saving does not inject a value, apply runtime changes, or publish.
-  Supply the key securely in environment settings, review/save the changes, and
-  publish the environment as required by the platform. Recheck model access afterward.
-- Vercel needs its own server-side key binding; the cloud environment proxy binding
-  is not automatically transferred to the deployed application.
-- No inference or deployment has been verified. Dataset and UI work can continue
-  while credentials are unavailable.
+- Project: minread; repository `OjassMohod/MinRead`; local checkout `/workspace/Test1`.
+- Node.js 24 and pinned dependencies; Vercel deployment configuration is included.
+- Shared `CHAT_MODEL_API_KEY` is injected. Groq model availability and a real
+  production-server analysis succeeded using the workspace proxy.
+- Workspace startup must set `NODE_USE_ENV_PROXY=1`; ordinary deployment does not
+  need this unless its host requires an outbound network proxy.
+- Vercel needs its own secure server-side key setting. Workspace proxy credentials
+  do not automatically transfer. No Vercel token is available here.
+- The app is deployment-ready after the listed checks, but has no verified public
+  URL yet. Follow README deployment steps and test the deployed URL before submission.
+- Distributed rate limiting remains a public-exposure limitation; native clients
+  can bypass origin checks and consume the free provider quota.
 
 ## Remaining execution sequence
 
-2. Completed: 12 labeled synthetic cases in `datasets/synthetic`, eight development
-   and four held-out evaluation cases. Labels are separate from model inputs.
-3. Scaffold the application and modular parsing/schema foundation.
-4. Wire real inference and server-side validation.
-5. Build the accessible input, results, and source-navigation interface.
-6. Implement ranking and correction handling.
-7. Evaluate actual output, record failures, and fix the core workflow.
-8. Verify security controls and deployment abuse protection.
-9. Deploy and test as an evaluator from a fresh browser session.
-10. Document setup, provider usage, limitations, and submission requirements.
+1. Complete: synthetic dataset, runnable app, server-side Groq extraction, privacy
+   disclosure, strict validation, and four-section results with clickable evidence.
+2. Skipped by user: priority levels. Corrections are addressed in extraction and
+   result grouping without priority scores.
+3. Verify production build, existing tests, and actual model/browser flow.
+4. Deploy on Vercel with secure environment variables; test the public URL from a
+   fresh browser, including evaluator access.
+5. Submit deployed URL, description, and model/provider disclosure.
 
-Optional features are cut first if time slips. Preserve real inference, evidence,
-credential protection, and deployed functional testing.
+Optional features are deferred. Preserve real inference, evidence, credential
+protection, and deployed functional testing.
