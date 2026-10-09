@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "development": [
+    "dev-01",
+    "dev-02",
+    "dev-03",
+    "dev-04",
+    "dev-05",
+    "dev-06",
+    "dev-07",
+    "dev-08"
+  ],
+  "held_out": [
+    "eval-01",
+    "eval-02",
+    "eval-03",
+    "eval-04"
+  ]
+}
