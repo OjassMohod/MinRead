@@ -29,8 +29,8 @@ Important Decisions, Open Issues. Every displayed item opens its supporting
 messages. Open issues include important unanswered questions, unassigned work,
 unresolved blockers, and conflicting decisions; later resolution must be respected.
 
-No accounts, conversation database, messaging integrations, attachments, file
-imports, notifications, automatic replies, local inference, or unread-boundary
+No accounts, conversation database, messaging integrations, attachments,
+notifications, automatic replies, local inference, or unread-boundary
 selection in the initial MVP. Synthetic fixtures are evaluation inputs, never
 canned analysis results.
 
@@ -123,7 +123,7 @@ checks that IDs exist; evaluation must also check that their text supports claim
    disclosure, strict validation, and four-section results with clickable evidence.
 2. Skipped by user: priority levels. Corrections are addressed in extraction and
    result grouping without priority scores.
-3. Completed: production build, 23 tests, UI smoke checks, and an initial full
+3. Completed: production build, 26 tests, UI smoke checks, and an initial full
    synthetic evaluation with failures recorded; targeted rechecks follow fixes.
 4. User completed Vercel deployment and reported successful incognito access.
    Independently verify public rate protection and updated deployment after push.
@@ -131,3 +131,6 @@ checks that IDs exist; evaluation must also check that their text supports claim
 
 Optional features are deferred. Preserve real inference, evidence, credential
 protection, and deployed functional testing.
+
+A later user-requested addition supports local UTF-8 .txt imports in the existing
+chat format, with byte/character limits and no upload until Analyze.

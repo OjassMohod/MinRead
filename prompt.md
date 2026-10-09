@@ -377,3 +377,24 @@ responses were explicit test-only fixtures. Hosted GitHub Actions and public
 firewall enforcement require separate status checks. No model-content errors,
 credentials, or real-user conversations are logged; categorical provider failure
 metadata alone may be logged. See `docs/EVALUATION.md` and `docs/SECURITY.md`.
+
+### Local text-file import
+
+**Actual instruction:**
+
+> would it be possible for you to include import button within 5 minutes
+
+**Tool:** Codex; exact coding-assistant model not recorded.
+**Purpose:** Add a small working import flow within the submission window.
+**Affected:** `src/lib/import-chat.ts`, `src/components/conversation-input.tsx`,
+`tests/import.test.ts`, README, and plan.
+**Outcome:** Import .txt reads UTF-8 text on the user's device, validates file size,
+encoding, content length and existing chat format, then populates input/preview.
+It never uploads the file or generates model results. Analyze remains an explicit
+action. Invalid files preserve existing input; Clear invalidates pending reads.
+PDF/image and arbitrary messaging export formats are not supported.
+**Verification:** All 26 tests, typecheck and production build passed; import tests
+cover BOM/multiline content, invalid UTF-8, binary/unsupported files, oversized
+files, character limits and malformed chat. Browser verification covers successful
+local import, same-file reimport, unsupported-file feedback, Clear, and no upload.
+No additional model call is needed for import.

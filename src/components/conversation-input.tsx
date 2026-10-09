@@ -6,6 +6,7 @@ import { MAX_CHAT_CHARACTERS } from "@/lib/limits";
 import { analysisResponseSchema, analysisRequestSchema, type AnalysisOutput, type ChatMessage } from "@/lib/schemas";
 import { AnalysisResults } from "./analysis-results";
 import { DEMO_CHAT, DEMO_USER } from "@/lib/demo-chat";
+import { readChatFile } from "@/lib/import-chat";
 
 export function ConversationInput({ providerName }: { providerName: string }) {
   const [rawText, setRawText] = useState("");
@@ -14,6 +15,9 @@ export function ConversationInput({ providerName }: { providerName: string }) {
   const [error, setError] = useState("");
   const [analysis, setAnalysis] = useState<AnalysisOutput | null>(null);
   const [busy, setBusy] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [importNotice, setImportNotice] = useState("");
+  const fileInput = useRef<HTMLInputElement | null>(null);
   const [activeSources, setActiveSources] = useState<string[]>([]);
   const evidence = useRef<HTMLElement | null>(null);
   const sourceTrigger = useRef<HTMLElement | null>(null);
@@ -30,6 +34,7 @@ export function ConversationInput({ providerName }: { providerName: string }) {
   function invalidate() {
     revision.current++; pending.current?.abort(); pending.current = null;
     setBusy(false); setMessages([]); setAnalysis(null); setError(""); setActiveSources([]);
+    setImporting(false); setImportNotice("");
   }
   function preview() {
     invalidate();
@@ -70,6 +75,21 @@ export function ConversationInput({ providerName }: { providerName: string }) {
     invalidate(); setRawText(DEMO_CHAT); setSelectedUser(DEMO_USER);
     setMessages(parseChat(DEMO_CHAT));
   }
+  async function importFile(file: File) {
+    invalidate();
+    const currentRevision = revision.current;
+    setImporting(true);
+    try {
+      const imported = await readChatFile(file);
+      if (currentRevision !== revision.current) return;
+      setRawText(imported.rawText); setMessages(imported.messages);
+      setImportNotice("Imported locally. Review the messages and enter your name before Analyze.");
+    } catch (failure) {
+      if (currentRevision === revision.current) setError(failure instanceof Error ? failure.message : "Unable to import this file.");
+    } finally {
+      if (currentRevision === revision.current) setImporting(false);
+    }
+  }
   function showSources(ids: string[]) {
     sourceTrigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setActiveSources([...new Set(ids)]);
@@ -90,15 +110,15 @@ export function ConversationInput({ providerName }: { providerName: string }) {
   return <div className="workspace">
     <section className="panel">
       <h2>Your conversation</h2><p className="muted">Paste messages in <code>Name: message</code> format.</p>
-      <div className="example"><button type="button" className="secondary" onClick={loadExample} disabled={busy}>{rawText ? "Replace with synthetic example" : "Try a synthetic example"}</button><p className="muted">Loads sample input only. Click Analyze for real AI results.</p></div>
+      <div className="example"><div className="actions"><button type="button" className="secondary" onClick={loadExample} disabled={busy || importing}>{rawText ? "Replace with synthetic example" : "Try a synthetic example"}</button><button type="button" className="secondary" onClick={() => fileInput.current?.click()} disabled={busy || importing}>{importing ? "Importing…" : "Import .txt"}</button></div><input ref={fileInput} type="file" accept=".txt,text/plain" aria-label="Import chat text file" hidden disabled={busy || importing} onChange={event => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void importFile(file); }} /><p className="muted">Examples and imports load locally. Use .txt with Name: message lines; click Analyze to send text to AI.</p>{importNotice && <p role="status">{importNotice}</p>}</div>
       <form onSubmit={analyze} aria-busy={busy}>
         <label htmlFor="user">Your name or handle</label>
-        <input id="user" value={selectedUser} onChange={event => { invalidate(); setSelectedUser(event.target.value); }} disabled={busy} maxLength={80} placeholder="Exactly as it appears in the chat" required />
+        <input id="user" value={selectedUser} onChange={event => { invalidate(); setSelectedUser(event.target.value); }} disabled={busy || importing} maxLength={80} placeholder="Exactly as it appears in the chat" required />
         <label htmlFor="chat">Chat messages</label>
-        <textarea id="chat" value={rawText} onChange={event => { invalidate(); setRawText(event.target.value); }} disabled={busy} maxLength={MAX_CHAT_CHARACTERS} rows={6} placeholder="Paste your conversation here…" aria-describedby="format count privacy" required />
+        <textarea id="chat" value={rawText} onChange={event => { invalidate(); setRawText(event.target.value); }} disabled={busy || importing} maxLength={MAX_CHAT_CHARACTERS} rows={6} placeholder="Paste your conversation here…" aria-describedby="format count privacy" required />
         <div className="input-meta"><span id="format">Optional: [ISO timestamp] Name: message</span><span id="count">{rawText.length.toLocaleString()} / 20,000</span></div>
         <p id="privacy" className="notice">Analyze sends your conversation through our server to {providerName}. Avoid sensitive information. We do not save chats; provider and hosting retention policies still apply. Preview stays on your device.</p>
-        <div className="actions"><button type="submit" disabled={busy}>{busy ? "Analyzing…" : "Analyze conversation"}</button><button type="button" className="secondary" onClick={preview} disabled={busy}>Preview messages</button><button type="button" className="secondary" onClick={clear}>Clear</button></div>
+        <div className="actions"><button type="submit" disabled={busy || importing}>{busy ? "Analyzing…" : "Analyze conversation"}</button><button type="button" className="secondary" onClick={preview} disabled={busy || importing}>Preview messages</button><button type="button" className="secondary" onClick={clear}>Clear</button></div>
         {busy && <p role="status">Analyzing your conversation. Clear cancels waiting; an already-sent provider request may continue.</p>}
         {error && <p role="alert" className="error">{error}</p>}
       </form>

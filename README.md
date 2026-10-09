@@ -107,11 +107,11 @@ conversion. Inputs over 20,000 characters are rejected, not truncated.
 - `src/lib/server` and `src/app/api/analyze`: server-only credentials and inference.
 - `src/components`: input, accessible result cards, and source viewing.
 - `datasets/synthetic`: 12 labeled synthetic cases; labels never enter model inputs.
-- `tests`: 23 foundation, request, provider, grouping, and evaluation regression checks.
+- `tests`: 26 foundation, request, provider, grouping, evaluation, and file-import checks.
 - `.github/workflows/checks.yml`: test, typecheck, and production build on pushes/PRs.
 - `scripts/evaluate.ts`: opt-in, serial actual-model evaluation on synthetic inputs.
 
-All 23 tests, TypeScript checking, and the production build pass. Initial live Groq
+All 26 tests, TypeScript checking, and the production build pass. Initial live Groq
 checks passed (4,222 tokens total): task/deadline/unanswered-question extraction
 and a browser test of deadline correction, four sections, source viewing, keyboard
 controls, mobile width, and Clear.
@@ -136,3 +136,13 @@ All fixtures must be synthetic; expected labels are used only after inference.
 Recorded results and known failures are in [the evaluation report](docs/EVALUATION.md).
 Previously held-out cases have now been exercised; create new unseen cases for
 future independent evaluation.
+
+## Import a chat file
+
+Click **Import .txt** to load a UTF-8 text file locally into the input and preview.
+Use `Name: message` lines, optionally prefixed with `[ISO timestamp]`; multiline
+messages are supported. Enter your name, review the messages, then click Analyze.
+Import alone makes no upload or model call. Files over 80 KB or conversations over
+20,000 characters are rejected without truncation. PDF, images, and arbitrary
+WhatsApp/Slack export formats are not supported. Clear also discards pending import
+results so a slow file read cannot restore cleared text.
