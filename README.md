@@ -4,6 +4,10 @@ Catch up on a busy chat in one pass: **Deadlines & Action Items → Conversation
 Summary → Important Decisions → Open Issues**. Click any result to see the
 original supporting messages. Priority levels are intentionally outside this MVP.
 
+See [prompt.md](prompt.md) for the AI-assisted development record, actual prompts,
+debugging, and verification. This record was added retrospectively after the
+hackathon documentation requirement was provided; it was not created before coding.
+
 Built with Next.js, TypeScript, Zod, and real server-side Groq inference. No canned
 AI results, accounts, or conversation database. Preview messages locally; Analyze
 sends the conversation to Groq after the privacy notice.
