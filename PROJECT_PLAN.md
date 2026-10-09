@@ -113,8 +113,9 @@ checks that IDs exist; evaluation must also check that their text supports claim
   do not automatically transfer. No Vercel token is available here.
 - The app is deployment-ready after the listed checks, but has no verified public
   URL yet. Follow README deployment steps and test the deployed URL before submission.
-- Distributed rate limiting remains a public-exposure limitation; native clients
-  can bypass origin checks and consume the free provider quota.
+- User published Vercel Firewall IP rate protection. Independent enforcement
+  verification is pending workspace access; distributed clients can still consume
+  the free provider quota. See docs/SECURITY.md.
 
 ## Remaining execution sequence
 
@@ -122,9 +123,10 @@ checks that IDs exist; evaluation must also check that their text supports claim
    disclosure, strict validation, and four-section results with clickable evidence.
 2. Skipped by user: priority levels. Corrections are addressed in extraction and
    result grouping without priority scores.
-3. Verify production build, existing tests, and actual model/browser flow.
-4. Deploy on Vercel with secure environment variables; test the public URL from a
-   fresh browser, including evaluator access.
+3. Completed: production build, 23 tests, UI smoke checks, and an initial full
+   synthetic evaluation with failures recorded; targeted rechecks follow fixes.
+4. User completed Vercel deployment and reported successful incognito access.
+   Independently verify public rate protection and updated deployment after push.
 5. Submit deployed URL, description, and model/provider disclosure.
 
 Optional features are deferred. Preserve real inference, evidence, credential

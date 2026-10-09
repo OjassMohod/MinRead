@@ -79,3 +79,10 @@ usage can reduce the available budget.
 Sources: [Groq limits](https://console.groq.com/docs/rate-limits),
 [API reference](https://console.groq.com/docs/api-reference),
 [reasoning controls](https://console.groq.com/docs/reasoning).
+
+The current extraction prompt has additional coverage instructions; the estimates
+above describe the earlier prompt and must not be treated as an exact current
+budget. Actual measured usage and request failures from the subsequent live
+evaluation are in `docs/evaluation-results.json`. The runner reserves 4,500 tokens
+per short case and 7,000 for the long case, pacing against 8,000 TPM. Failed calls
+without usage metadata may still consume quota. Account-wide usage also counts.

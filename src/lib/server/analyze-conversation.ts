@@ -29,6 +29,7 @@ export async function analyzeConversation(request: AnalysisRequest, messages: Ch
       ],
       response_format: zodResponseFormat(analysisOutputSchema, "minread_analysis"),
       max_completion_tokens: MAX_MODEL_OUTPUT_TOKENS,
+      temperature: 0,
       ...(config.provider === "groq" ? { reasoning_effort: "low" as const } : { store: false }),
     }, { signal });
 
@@ -54,7 +55,12 @@ export async function analyzeConversation(request: AnalysisRequest, messages: Ch
     if (error instanceof ModelError) throw error;
     if (error instanceof OpenAI.APIConnectionTimeoutError) throw new ModelError(504, "Analysis timed out. Try a shorter conversation.");
     if (error instanceof OpenAI.APIError && error.status === 429) throw new ModelError(503, "The model is temporarily unavailable or its usage limit was reached. Try again later.");
-    // Provider errors can contain request data: never log or return them.
+    // Log categorical metadata only: provider errors/bodies can contain chat data.
+    console.warn("Model request failed", {
+      category: error instanceof OpenAI.APIUserAbortError ? "request-aborted" : error instanceof OpenAI.APIError ? "upstream-response" : "network",
+      status: error instanceof OpenAI.APIError ? error.status ?? null : null,
+      schemaGenerationFailed: error instanceof OpenAI.APIError && error.code === "json_validate_failed",
+    });
     throw new ModelError(502, "Unable to reach the model. Please retry later.");
   }
 }

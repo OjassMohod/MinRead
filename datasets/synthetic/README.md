@@ -92,3 +92,14 @@ including an assigned deadline, unanswered question, and corrected deadline.
 The second check used the browser end-to-end. These checks used 4,222 tokens
 in total; a complete dataset accuracy benchmark has not been run. Priority labels
 remain dataset annotations; priority scoring is deferred in the MVP.
+
+## Recorded evaluation and annotation review
+
+An initial live run exercised all 12 cases; outputs, failures, and targeted
+rechecks are recorded in [the evaluation report](../../docs/EVALUATION.md).
+Source-check scoring accepts assignment citations without redundant acknowledgement
+citations, but deadline corrections still require original and corrected evidence.
+The dev-02 label now includes pending vendor quotes as an open dependency: a
+promise to deliver does not establish receipt. Inputs were unchanged. Previous
+recorded scores remain available alongside reviewed checks. Held-out cases have
+now been exercised; use new unseen cases for future independent evaluation.

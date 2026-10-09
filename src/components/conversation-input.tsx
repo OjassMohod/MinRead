@@ -5,6 +5,7 @@ import { parseChat } from "@/lib/parse-chat";
 import { MAX_CHAT_CHARACTERS } from "@/lib/limits";
 import { analysisResponseSchema, analysisRequestSchema, type AnalysisOutput, type ChatMessage } from "@/lib/schemas";
 import { AnalysisResults } from "./analysis-results";
+import { DEMO_CHAT, DEMO_USER } from "@/lib/demo-chat";
 
 export function ConversationInput({ providerName }: { providerName: string }) {
   const [rawText, setRawText] = useState("");
@@ -19,6 +20,9 @@ export function ConversationInput({ providerName }: { providerName: string }) {
   const pending = useRef<AbortController | null>(null);
   const revision = useRef(0);
   useEffect(() => () => { pending.current?.abort(); }, []);
+  useEffect(() => {
+    if (analysis) document.getElementById("results-title")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+  }, [analysis]);
 
   function input() {
     return analysisRequestSchema.parse({ rawText, selectedUser, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
@@ -47,6 +51,8 @@ export function ConversationInput({ providerName }: { providerName: string }) {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify(request), signal: controller.signal, cache: "no-store",
       });
+      if (response.status === 429) throw new Error("Too many analyses. Please wait a minute before trying again.");
+      if (!response.headers.get("content-type")?.includes("application/json")) throw new Error("Analysis is unavailable. Please try again later.");
       const payload = await response.json();
       if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "Analysis failed. Please retry.");
       const validated = analysisResponseSchema.parse(payload);
@@ -60,6 +66,10 @@ export function ConversationInput({ providerName }: { providerName: string }) {
     }
   }
   function clear() { invalidate(); setRawText(""); setSelectedUser(""); }
+  function loadExample() {
+    invalidate(); setRawText(DEMO_CHAT); setSelectedUser(DEMO_USER);
+    setMessages(parseChat(DEMO_CHAT));
+  }
   function showSources(ids: string[]) {
     sourceTrigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setActiveSources([...new Set(ids)]);
@@ -80,11 +90,12 @@ export function ConversationInput({ providerName }: { providerName: string }) {
   return <div className="workspace">
     <section className="panel">
       <h2>Your conversation</h2><p className="muted">Paste messages in <code>Name: message</code> format.</p>
+      <div className="example"><button type="button" className="secondary" onClick={loadExample} disabled={busy}>{rawText ? "Replace with synthetic example" : "Try a synthetic example"}</button><p className="muted">Loads sample input only. Click Analyze for real AI results.</p></div>
       <form onSubmit={analyze} aria-busy={busy}>
         <label htmlFor="user">Your name or handle</label>
         <input id="user" value={selectedUser} onChange={event => { invalidate(); setSelectedUser(event.target.value); }} disabled={busy} maxLength={80} placeholder="Exactly as it appears in the chat" required />
         <label htmlFor="chat">Chat messages</label>
-        <textarea id="chat" value={rawText} onChange={event => { invalidate(); setRawText(event.target.value); }} disabled={busy} maxLength={MAX_CHAT_CHARACTERS} rows={12} placeholder="Paste your conversation here…" aria-describedby="format count privacy" required />
+        <textarea id="chat" value={rawText} onChange={event => { invalidate(); setRawText(event.target.value); }} disabled={busy} maxLength={MAX_CHAT_CHARACTERS} rows={6} placeholder="Paste your conversation here…" aria-describedby="format count privacy" required />
         <div className="input-meta"><span id="format">Optional: [ISO timestamp] Name: message</span><span id="count">{rawText.length.toLocaleString()} / 20,000</span></div>
         <p id="privacy" className="notice">Analyze sends your conversation through our server to {providerName}. Avoid sensitive information. We do not save chats; provider and hosting retention policies still apply. Preview stays on your device.</p>
         <div className="actions"><button type="submit" disabled={busy}>{busy ? "Analyzing…" : "Analyze conversation"}</button><button type="button" className="secondary" onClick={preview} disabled={busy}>Preview messages</button><button type="button" className="secondary" onClick={clear}>Clear</button></div>

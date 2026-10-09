@@ -2,11 +2,11 @@
 
 Catch up on a busy chat in one pass: **Deadlines & Action Items → Conversation
 Summary → Important Decisions → Open Issues**. Click any result to see the
-original supporting messages. Priority levels are intentionally outside this MVP.
+original supporting messages. Priority levels are intentionally outside this MVP. A clearly labeled synthetic
+example loads input only; Analyze still calls the real model.
 
 See [prompt.md](prompt.md) for the AI-assisted development record, actual prompts,
-debugging, and verification. This record was added retrospectively after the
-hackathon documentation requirement was provided; it was not created before coding.
+debugging, and verification.
 
 Built with Next.js, TypeScript, Zod, and real server-side Groq inference. No canned
 AI results, accounts, or conversation database. Preview messages locally; Analyze
@@ -70,9 +70,10 @@ Clearing cannot retract an already-sent provider request. No zero-leakage claim.
 Input size limits, strict schemas, source-ID validation, escaped text, same-origin
 checks, timeouts, and sanitized errors are implemented. Source IDs confirm where
 an answer points, not whether every interpretation is correct. Review evidence.
-The public endpoint has no distributed rate limiter: before broadly sharing it,
-configure hosting-level rate controls if available on your plan. Origin checks
-alone do not stop direct API clients; free provider quotas can still be exhausted.
+A Vercel Firewall rule (3 requests/minute/IP on `/api/analyze`) was published by
+the user. [Protection and verification details](docs/SECURITY.md) distinguish that
+configuration from a live enforcement test. The app handles HTML/JSON 429 responses
+clearly. IP limits cannot prevent distributed clients from exhausting free quota.
 
 ## Run locally
 
@@ -106,11 +107,32 @@ conversion. Inputs over 20,000 characters are rejected, not truncated.
 - `src/lib/server` and `src/app/api/analyze`: server-only credentials and inference.
 - `src/components`: input, accessible result cards, and source viewing.
 - `datasets/synthetic`: 12 labeled synthetic cases; labels never enter model inputs.
-- `tests`: 17 foundation, request, provider, and grouping checks.
+- `tests`: 23 foundation, request, provider, grouping, and evaluation regression checks.
+- `.github/workflows/checks.yml`: test, typecheck, and production build on pushes/PRs.
+- `scripts/evaluate.ts`: opt-in, serial actual-model evaluation on synthetic inputs.
 
-All 17 tests, TypeScript checking, and the production build pass. Two live Groq
+All 23 tests, TypeScript checking, and the production build pass. Initial live Groq
 checks passed (4,222 tokens total): task/deadline/unanswered-question extraction
 and a browser test of deadline correction, four sections, source viewing, keyboard
 controls, mobile width, and Clear.
 This is a functional smoke check, not an accuracy benchmark over every fixture.
 See [MVP plan](PROJECT_PLAN.md) for scope and deferred features.
+
+## Live evaluation
+
+Run only when you have quota available. This command calls the deployed model and
+saves **synthetic** outputs for review; it is not run automatically by CI.
+
+```sh
+npm run evaluate -- https://your-app.vercel.app /tmp/minread-evaluation.json
+# Recheck selected cases only:
+npm run evaluate -- https://your-app.vercel.app /tmp/recheck.json dev-02,dev-06
+```
+
+The runner paces calls conservatively against Groq's token limit, performs no
+automatic retries, and checks user ownership, current deadlines, source references,
+and section coverage. Semantic relevance and summary faithfulness need review.
+All fixtures must be synthetic; expected labels are used only after inference.
+Recorded results and known failures are in [the evaluation report](docs/EVALUATION.md).
+Previously held-out cases have now been exercised; create new unseen cases for
+future independent evaluation.

@@ -22,7 +22,8 @@ an invented midnight deadline. Relative dates in undated messages cannot be reso
 analysis time. Use the supplied timezone when appropriate, but explicit source timezones take
 precedence. If ambiguous, leave deadlineIso null and explain ambiguity.
 
-Write a concise recap with at most six bullets and avoid duplicating tasks. Empty findings are
+Write a concise recap with at most six bullets. Summary and findings may overlap when
+needed for complete section coverage. Empty findings are
 valid when nothing important occurred. The interface has exactly four sections, in order:
 1. Deadlines and Action Items: assigned outstanding tasks with actual owners and deadlines.
 2. Conversation Summary: what was discussed, including important corrections, cancellations,
@@ -36,6 +37,12 @@ decisions or fixes can close an earlier issue. Do not list answered questions, r
 completed work or casual rhetorical questions as open issues. An unassigned suggestion must not
 become the selected user's task. A disputed decision belongs in open issues, not confirmed
 decisions. Do not invent an action plan or solution. All sections need source evidence.
+Before returning, check that every important unresolved blocker is a finding, even
+if already mentioned in the summary. Missing equipment, unavailable resources and
+reported failures without a later fix must remain visible in Open Issues.
+Check each important question, unassigned task and reported blocker separately for
+later resolution. Include every distinct unresolved one as a finding: a blocker does
+not replace an unanswered question. There is no three-item limit on findings.
 Do not assign priority levels.`;
 
 /** Only input data goes to the model; no fixtures, expected labels, or credentials. */

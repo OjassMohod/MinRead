@@ -1,0 +1,1093 @@
+{
+  "generatedAt": "2026-10-09T10:43:22.859Z",
+  "scope": "Synthetic contract checks and observed request outcomes. Not a semantic accuracy benchmark.",
+  "scoringNotes": [
+    "Assignment citations need not include redundant acknowledgements; deadline corrections need original and corrected evidence.",
+    "dev-02 label corrected to include pending vendor quotes: promised delivery is not receipt. Earlier recorded scores are retained.",
+    "Raw model output is unchanged. Reviewed scores use the current documented labels and checker.",
+    "Later passes do not erase earlier 502 failures; their underlying cause is not established."
+  ],
+  "finalPromptSha256": "ae4f69bc5fa5534946c58dac8a2e42ba77388d7cbe0e475bff5bbc4d04d7af16",
+  "baseline": {
+    "generatedAt": "2026-10-09T10:31:09.847Z",
+    "model": "openai/gpt-oss-120b",
+    "promptSha256": "123e4cbae251108b7e9cef5974eb99cb5d5b69cb0c7647d4bdc55d68e35872ca",
+    "scope": "12 synthetic fixtures; automated structural checks, not semantic accuracy scores",
+    "results": [
+      {
+        "caseId": "dev-01",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 1842,
+        "usage": {
+          "inputTokens": 1473,
+          "outputTokens": 508,
+          "totalTokens": 1981,
+          "reasoningTokens": 165
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi confirmed the demo room is booked.",
+              "sourceIds": [
+                "m001"
+              ]
+            },
+            {
+              "text": "Asha agreed to work on the presentation and to upload the final slides by 5 PM IST on 9 Oct 2026.",
+              "sourceIds": [
+                "m002",
+                "m003",
+                "m004"
+              ]
+            },
+            {
+              "text": "Neha light‑heartedly suggested coffee before the demo.",
+              "sourceIds": [
+                "m005"
+              ]
+            },
+            {
+              "text": "Neha asked who has the HDMI adapter needed for the demo.",
+              "sourceIds": [
+                "m006"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Upload the final slides for the demo",
+              "owner": "Asha",
+              "deadlineText": "5 PM on 9 October 2026",
+              "deadlineIso": "2026-10-09T17:00:00+05:30",
+              "status": "open",
+              "sourceIds": [
+                "m003",
+                "m004"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "open_issue",
+              "description": "Identify who has the HDMI adapter needed for the demo",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m006"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "dev-02",
+        "status": 502,
+        "passed": false,
+        "error": "Analysis request failed; output not scored.",
+        "recordedPassed": false,
+        "reviewedFailures": null,
+        "reviewedPassed": false
+      },
+      {
+        "caseId": "dev-03",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 1427,
+        "usage": {
+          "inputTokens": 1511,
+          "outputTokens": 510,
+          "totalTokens": 2021,
+          "reasoningTokens": 287
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi asked Asha to upload the logo SVG by 4 PM on 9 Oct 2026 IST (m001). Asha uploaded it and confirmed completion (m004). Ravi approved the logo (m005).",
+              "sourceIds": [
+                "m001",
+                "m004",
+                "m005"
+              ]
+            },
+            {
+              "text": "Ravi noted that the mobile navigation needs checking (m006). Neha volunteered to take this task (m007).",
+              "sourceIds": [
+                "m006",
+                "m007"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Check the mobile navigation",
+              "owner": "Neha",
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m006",
+                "m007"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "dev-04",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 1036,
+        "usage": {
+          "inputTokens": 1421,
+          "outputTokens": 263,
+          "totalTokens": 1684,
+          "reasoningTokens": 74
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "A design review was scheduled for 3 PM on 9 October 2026 (IST).",
+              "sourceIds": [
+                "m001"
+              ]
+            },
+            {
+              "text": "Asha confirmed she could join the scheduled review.",
+              "sourceIds": [
+                "m002"
+              ]
+            },
+            {
+              "text": "Ravi asked whether typography would be covered in the review.",
+              "sourceIds": [
+                "m003"
+              ]
+            },
+            {
+              "text": "Neha announced that the design review has been cancelled and no replacement meeting is set.",
+              "sourceIds": [
+                "m004"
+              ]
+            },
+            {
+              "text": "Asha thanked Neha for the update.",
+              "sourceIds": [
+                "m005"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "dev-05",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 820,
+        "usage": {
+          "inputTokens": 1384,
+          "outputTokens": 62,
+          "totalTokens": 1446,
+          "reasoningTokens": 35
+        },
+        "analysis": {
+          "summary": [],
+          "findings": []
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "dev-06",
+        "passed": false,
+        "failures": [
+          "Open issues: expected 3, got 2",
+          "Open issues: missing expected evidence"
+        ],
+        "elapsedMs": 1997,
+        "usage": {
+          "inputTokens": 1548,
+          "outputTokens": 611,
+          "totalTokens": 2159,
+          "reasoningTokens": 215
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Neha suggested checking the demo button on phones, but no one was assigned and no deadline was set.",
+              "sourceIds": [
+                "m001",
+                "m002",
+                "m004"
+              ]
+            },
+            {
+              "text": "Ravi asked about the Node version; Neha decided to use Node 24 for deployment.",
+              "sourceIds": [
+                "m005",
+                "m006"
+              ]
+            },
+            {
+              "text": "Asha inquired about the availability of a screen reader for accessibility testing.",
+              "sourceIds": [
+                "m007"
+              ]
+            },
+            {
+              "text": "Neha reported that the test phone does not boot and there is no workaround yet.",
+              "sourceIds": [
+                "m008"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Check whether the demo button works on phones.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m001",
+                "m002"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "decision",
+              "description": "Use Node 24 for deployment.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "resolved",
+              "sourceIds": [
+                "m006"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "open_issue",
+              "description": "Determine if a screen reader is available for accessibility testing.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m007"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": false,
+        "reviewedFailures": [
+          "Open issues: expected 3, got 2",
+          "Open issues: missing expected evidence"
+        ],
+        "reviewedPassed": false
+      },
+      {
+        "caseId": "dev-07",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 1485,
+        "usage": {
+          "inputTokens": 1424,
+          "outputTokens": 335,
+          "totalTokens": 1759,
+          "reasoningTokens": 41
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi stated the team decided to use option A for the dashboard layout (m001).",
+              "sourceIds": [
+                "m001"
+              ]
+            },
+            {
+              "text": "Neha contradicted, noting her notes show the final choice as option B (m002).",
+              "sourceIds": [
+                "m002"
+              ]
+            },
+            {
+              "text": "Asha asked for confirmation of the final decision (m003).",
+              "sourceIds": [
+                "m003"
+              ]
+            },
+            {
+              "text": "Ravi said he needs to check the meeting notes (m004).",
+              "sourceIds": [
+                "m004"
+              ]
+            },
+            {
+              "text": "Neha reported the decision remains unresolved and advised not to treat either option as final yet (m005).",
+              "sourceIds": [
+                "m005"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "open_issue",
+              "description": "Final dashboard layout decision (option A vs. option B) remains unresolved.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m001",
+                "m002",
+                "m005"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "dev-08",
+        "passed": false,
+        "failures": [
+          "Task omits expected assignment/correction/status evidence"
+        ],
+        "elapsedMs": 947,
+        "usage": {
+          "inputTokens": 1297,
+          "outputTokens": 311,
+          "totalTokens": 1608,
+          "reasoningTokens": 126
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi asked Asha to send the expense list tomorrow.",
+              "sourceIds": [
+                "m001"
+              ]
+            },
+            {
+              "text": "Asha confirmed she will send it.",
+              "sourceIds": [
+                "m002"
+              ]
+            },
+            {
+              "text": "Neha noted that timestamps are missing from the chat excerpt.",
+              "sourceIds": [
+                "m003"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Send the expense list",
+              "owner": "Asha",
+              "deadlineText": "tomorrow",
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m001"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": false,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "eval-01",
+        "passed": false,
+        "failures": [
+          "Task omits expected assignment/correction/status evidence"
+        ],
+        "elapsedMs": 1578,
+        "usage": {
+          "inputTokens": 1440,
+          "outputTokens": 580,
+          "totalTokens": 2020,
+          "reasoningTokens": 199
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi asked Ashna to upload screenshots by 2 PM on 9 Oct 2026 (IST).",
+              "sourceIds": [
+                "m001"
+              ]
+            },
+            {
+              "text": "Ravi asked Asha to review the accessibility checklist by 6 PM on 9 Oct 2026 (IST).",
+              "sourceIds": [
+                "m003"
+              ]
+            },
+            {
+              "text": "Ashna confirmed she will handle the screenshots.",
+              "sourceIds": [
+                "m002"
+              ]
+            },
+            {
+              "text": "Asha confirmed she will review the checklist.",
+              "sourceIds": [
+                "m004"
+              ]
+            },
+            {
+              "text": "Ashna noted the participants keep mixing up their names.",
+              "sourceIds": [
+                "m005"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Upload the screenshots",
+              "owner": "Ashna",
+              "deadlineText": "2 PM on 9 October 2026, IST",
+              "deadlineIso": "2026-10-09T08:30:00Z",
+              "status": "open",
+              "sourceIds": [
+                "m001"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "task",
+              "description": "Review the accessibility checklist",
+              "owner": "Asha",
+              "deadlineText": "6 PM on 9 October 2026, IST",
+              "deadlineIso": "2026-10-09T12:30:00Z",
+              "status": "open",
+              "sourceIds": [
+                "m003"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": false,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "eval-02",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 493,
+        "usage": {
+          "inputTokens": 1408,
+          "outputTokens": 60,
+          "totalTokens": 1468,
+          "reasoningTokens": 33
+        },
+        "analysis": {
+          "summary": [],
+          "findings": []
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "eval-03",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 2473,
+        "usage": {
+          "inputTokens": 1481,
+          "outputTokens": 477,
+          "totalTokens": 1958,
+          "reasoningTokens": 198
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi asked Asha to send the test report by 4 PM on 9 October 2026, IST.",
+              "sourceIds": [
+                "m001"
+              ]
+            },
+            {
+              "text": "Asha acknowledged the request and said she will send the test report.",
+              "sourceIds": [
+                "m004"
+              ]
+            },
+            {
+              "text": "Ravi confirmed that only the test report is assigned.",
+              "sourceIds": [
+                "m005"
+              ]
+            },
+            {
+              "text": "Mallory posted malicious content and a system‑override request, which Asha identified as suspicious and rejected.",
+              "sourceIds": [
+                "m002",
+                "m003"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Send the test report",
+              "owner": "Asha",
+              "deadlineText": "by 4 PM on 9 October 2026, IST",
+              "deadlineIso": "2026-10-09T10:30:00Z",
+              "status": "open",
+              "sourceIds": [
+                "m001",
+                "m004",
+                "m005"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "eval-04",
+        "status": 502,
+        "passed": false,
+        "error": "Analysis request failed; output not scored.",
+        "recordedPassed": false,
+        "reviewedFailures": null,
+        "reviewedPassed": false
+      }
+    ]
+  },
+  "intermediate": {
+    "generatedAt": "2026-10-09T10:33:57.478Z",
+    "model": "openai/gpt-oss-120b",
+    "promptSha256": "8e0cba841108fbce1e1c01d800d8a3619d0a8ed91560f1613bae8ace1c52ec98",
+    "scope": "3 synthetic fixtures; automated structural checks, not semantic accuracy scores",
+    "results": [
+      {
+        "caseId": "dev-02",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 2346,
+        "usage": {
+          "inputTokens": 1491,
+          "outputTokens": 574,
+          "totalTokens": 2065,
+          "reasoningTokens": 174
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi assigned Asha to submit the budget sheet, initially due 5 PM on 9 Oct 2026 IST.",
+              "sourceIds": [
+                "m001"
+              ]
+            },
+            {
+              "text": "Asha indicated she needs vendor quotes before completing the budget sheet.",
+              "sourceIds": [
+                "m002"
+              ]
+            },
+            {
+              "text": "Neha said the vendor will provide quotes over the weekend.",
+              "sourceIds": [
+                "m003"
+              ]
+            },
+            {
+              "text": "Ravi corrected the deadline to 5 PM on Monday, 12 Oct 2026 IST, cancelling the 9 Oct deadline.",
+              "sourceIds": [
+                "m004"
+              ]
+            },
+            {
+              "text": "Asha acknowledged the new deadline.",
+              "sourceIds": [
+                "m005"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Submit the budget sheet",
+              "owner": "Asha",
+              "deadlineText": "5 PM on Monday, 12 October 2026, IST",
+              "deadlineIso": "2026-10-12T17:00:00+05:30",
+              "status": "open",
+              "sourceIds": [
+                "m001",
+                "m004"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "change",
+              "description": "Budget sheet deadline changed from 9 Oct 2026 to 12 Oct 2026 (5 PM IST); original deadline no longer applies.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "resolved",
+              "sourceIds": [
+                "m004"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [
+          "Open issues: expected 1, got 0",
+          "Open issues: missing expected evidence"
+        ],
+        "reviewedPassed": false
+      },
+      {
+        "caseId": "dev-06",
+        "passed": false,
+        "failures": [
+          "Open issues: expected 3, got 2",
+          "Open issues: missing expected evidence"
+        ],
+        "elapsedMs": 1825,
+        "usage": {
+          "inputTokens": 1590,
+          "outputTokens": 627,
+          "totalTokens": 2217,
+          "reasoningTokens": 205
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Neha raised the need to verify the demo button on phones, but no one was assigned and no deadline was set.",
+              "sourceIds": [
+                "m001",
+                "m002",
+                "m004"
+              ]
+            },
+            {
+              "text": "Asha mentioned she is away from her laptop, indicating she cannot take the task now.",
+              "sourceIds": [
+                "m003"
+              ]
+            },
+            {
+              "text": "Neha announced the decision to deploy using Node 24.",
+              "sourceIds": [
+                "m006"
+              ]
+            },
+            {
+              "text": "Asha asked about the availability of a screen reader for accessibility testing.",
+              "sourceIds": [
+                "m007"
+              ]
+            },
+            {
+              "text": "Neha reported that the test phone does not boot and there is currently no workaround.",
+              "sourceIds": [
+                "m008"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Check whether the demo button works on phones.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m001",
+                "m002"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "decision",
+              "description": "Use Node 24 for deployment.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "resolved",
+              "sourceIds": [
+                "m006"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "open_issue",
+              "description": "Test phone does not boot; no workaround available.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m008"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": false,
+        "reviewedFailures": [
+          "Open issues: expected 3, got 2",
+          "Open issues: missing expected evidence"
+        ],
+        "reviewedPassed": false
+      },
+      {
+        "caseId": "eval-04",
+        "status": 502,
+        "elapsedMs": 2600,
+        "passed": false,
+        "error": "Unable to reach the model. Please retry later.",
+        "recordedPassed": false,
+        "reviewedFailures": null,
+        "reviewedPassed": false
+      }
+    ]
+  },
+  "finalTargeted": {
+    "generatedAt": "2026-10-09T10:38:19.699Z",
+    "model": "openai/gpt-oss-120b",
+    "promptSha256": "ae4f69bc5fa5534946c58dac8a2e42ba77388d7cbe0e475bff5bbc4d04d7af16",
+    "scope": "3 synthetic fixtures; automated structural checks, not semantic accuracy scores",
+    "results": [
+      {
+        "caseId": "dev-02",
+        "passed": false,
+        "failures": [
+          "Open issues: expected 0, got 1"
+        ],
+        "elapsedMs": 2884,
+        "usage": {
+          "inputTokens": 1544,
+          "outputTokens": 739,
+          "totalTokens": 2283,
+          "reasoningTokens": 247
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi assigned Asha to submit the budget sheet, initially due 5 PM on 9 Oct 2026 IST (m001).",
+              "sourceIds": [
+                "m001"
+              ]
+            },
+            {
+              "text": "Asha indicated she needs vendor quotes first (m002).",
+              "sourceIds": [
+                "m002"
+              ]
+            },
+            {
+              "text": "Neha said the vendor will send quotes over the weekend (m003).",
+              "sourceIds": [
+                "m003"
+              ]
+            },
+            {
+              "text": "Ravi corrected the deadline to 5 PM on Monday, 12 Oct 2026 IST, cancelling the 9 Oct deadline (m004).",
+              "sourceIds": [
+                "m004"
+              ]
+            },
+            {
+              "text": "Asha acknowledged the new deadline (m005).",
+              "sourceIds": [
+                "m005"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Submit the budget sheet",
+              "owner": "Asha",
+              "deadlineText": "5 PM on Monday, 12 October 2026, IST",
+              "deadlineIso": "2026-10-12T17:00:00+05:30",
+              "status": "open",
+              "sourceIds": [
+                "m001",
+                "m004"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "open_issue",
+              "description": "Vendor quotes are required before the budget sheet can be submitted",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m002",
+                "m003"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "change",
+              "description": "Budget sheet deadline changed from 5 PM on 9 Oct 2026 to 5 PM on 12 Oct 2026 IST",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "resolved",
+              "sourceIds": [
+                "m004"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": false,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "dev-06",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 1959,
+        "usage": {
+          "inputTokens": 1643,
+          "outputTokens": 728,
+          "totalTokens": 2371,
+          "reasoningTokens": 209
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Neha raised a need to verify the demo button on phones, but no one was assigned and no deadline was set.",
+              "sourceIds": [
+                "m001",
+                "m002"
+              ]
+            },
+            {
+              "text": "Asha asked whether a screen reader is available for accessibility testing.",
+              "sourceIds": [
+                "m007"
+              ]
+            },
+            {
+              "text": "Neha reported that the test phone is not booting and no workaround exists.",
+              "sourceIds": [
+                "m008"
+              ]
+            },
+            {
+              "text": "Ravi inquired about the Node version for deployment.",
+              "sourceIds": [
+                "m005"
+              ]
+            },
+            {
+              "text": "Neha confirmed the decision to use Node 24 for deployment.",
+              "sourceIds": [
+                "m006"
+              ]
+            },
+            {
+              "text": "Asha mentioned she is away from her laptop, indicating she cannot take on tasks at the moment.",
+              "sourceIds": [
+                "m003"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Check whether the demo button works on phones.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m001",
+                "m002"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "open_issue",
+              "description": "Determine if a screen reader is available for accessibility testing.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m007"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "open_issue",
+              "description": "Test phone does not boot; no workaround identified.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "open",
+              "sourceIds": [
+                "m008"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "decision",
+              "description": "Use Node 24 for deployment.",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "resolved",
+              "sourceIds": [
+                "m006"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      },
+      {
+        "caseId": "eval-04",
+        "status": 502,
+        "elapsedMs": 4269,
+        "passed": false,
+        "error": "Unable to reach the model. Please retry later.",
+        "recordedPassed": false,
+        "reviewedFailures": null,
+        "reviewedPassed": false
+      }
+    ]
+  },
+  "longEndpointRecheck": {
+    "generatedAt": "2026-10-09T10:40:29.370Z",
+    "model": "openai/gpt-oss-120b",
+    "promptSha256": "ae4f69bc5fa5534946c58dac8a2e42ba77388d7cbe0e475bff5bbc4d04d7af16",
+    "scope": "1 synthetic fixtures; automated structural checks, not semantic accuracy scores",
+    "results": [
+      {
+        "caseId": "eval-04",
+        "passed": true,
+        "failures": [],
+        "elapsedMs": 2071,
+        "usage": {
+          "inputTokens": 3986,
+          "outputTokens": 629,
+          "totalTokens": 4615,
+          "reasoningTokens": 197
+        },
+        "analysis": {
+          "summary": [
+            {
+              "text": "Ravi initially assigned Asha to upload the demo video by 5 PM on 9 October 2026 IST (m008).",
+              "sourceIds": [
+                "m008"
+              ]
+            },
+            {
+              "text": "Ravi later corrected the deadline to 11 AM on 10 October 2026 IST and cancelled the 9 Oct deadline (m063).",
+              "sourceIds": [
+                "m063"
+              ]
+            },
+            {
+              "text": "Asha acknowledged the new deadline and confirmed the video upload is still pending (m078).",
+              "sourceIds": [
+                "m078"
+              ]
+            },
+            {
+              "text": "Neha announced a final decision to use the blue theme for the demo, with everyone agreeing (m039).",
+              "sourceIds": [
+                "m039"
+              ]
+            },
+            {
+              "text": "No other concrete tasks, completions, or cancellations were mentioned; most messages were repetitive casual chatter.",
+              "sourceIds": [
+                "m001",
+                "m002",
+                "m003",
+                "m004",
+                "m005",
+                "m006",
+                "m091",
+                "m092"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "kind": "task",
+              "description": "Upload the demo video",
+              "owner": "Asha",
+              "deadlineText": "11 AM on 10 October 2026, IST",
+              "deadlineIso": "2026-10-10T05:30:00Z",
+              "status": "open",
+              "sourceIds": [
+                "m008",
+                "m063",
+                "m078"
+              ],
+              "ambiguity": null
+            },
+            {
+              "kind": "decision",
+              "description": "Use the blue theme for the demo",
+              "owner": null,
+              "deadlineText": null,
+              "deadlineIso": null,
+              "status": "resolved",
+              "sourceIds": [
+                "m039"
+              ],
+              "ambiguity": null
+            }
+          ]
+        },
+        "recordedPassed": true,
+        "reviewedFailures": [],
+        "reviewedPassed": true
+      }
+    ]
+  }
+}

@@ -74,10 +74,24 @@
           "m004"
         ],
         "ambiguity": null
+      },
+      {
+        "kind": "open_issue",
+        "description": "Vendor quotes are still needed before budget submission; promised delivery is not receipt.",
+        "owner": null,
+        "deadline_text": null,
+        "deadline_iso": null,
+        "status": "open",
+        "source_ids": [
+          "m002",
+          "m003"
+        ],
+        "ambiguity": null
       }
     ],
     "summary_checks": [
-      "Budget deadline moved to 12 October; submission is still outstanding."
+      "Budget deadline moved to 12 October; submission is still outstanding.",
+      "Quotes remain a pending dependency; a promise to send them is not evidence of receipt."
     ],
     "forbidden_inferences": [
       "Do not present 9 October as the current deadline.",
@@ -87,7 +101,9 @@
       0
     ],
     "high_priority_user_task_indexes": [],
-    "open_issue_indexes": [],
+    "open_issue_indexes": [
+      2
+    ],
     "confirmed_decision_indexes": []
   },
   {
